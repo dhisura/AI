@@ -1,0 +1,32 @@
+# FRED dependencies, pinned.
+#
+# Phase 0 and Phase 1 need NOTHING from this list -- both run on the Python
+# standard library alone. Install per phase, only when you reach it:
+#
+#   py -3.13 -m venv .venv && .venv\Scripts\activate
+#   pip install -r requirements.txt
+
+# --- Phase 2: hearing (faster-whisper base, int8, CPU) ---
+faster-whisper==1.2.1
+# ctypes binding to the PortAudio-compatible host; records from the mic
+sounddevice==0.5.6
+numpy==2.5.4
+
+# --- Phase 2: voice (Piper) ---
+# Installs piper.exe, which fred/voice.py drives as a subprocess.
+# Kokoro was considered and rejected: it pulls torch, a multi-GB download that
+# is not worth it on this machine. See CLAUDE.md.
+piper-tts==1.8.0
+
+# --- Phase 3: hands ---
+pywinauto==0.6.9
+pyautogui==0.9.54
+pygetwindow==0.0.9
+
+# --- Phase 3: DPI awareness for 125% display scaling ---
+# pywinauto calls SetProcessDpiAwareness itself; nothing extra needed.
+
+# --- Phase 4: task loop ---
+# Nothing new. The agent loop is stdlib, episode logging is stdlib json +
+# sqlite3, and Calculator and Explorer are driven through the Phase 3
+# pywinauto/pyautogui install already above.
