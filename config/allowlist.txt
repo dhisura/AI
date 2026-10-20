@@ -1,0 +1,9 @@
+# Apps FRED is permitted to control. One per line, blank lines and
+# comments ignored. Enforced by fred/hands.py (Phase 3+).
+#
+# Matching is case-insensitive on the process name, e.g. "notepad.exe".
+Notepad.exe
+Calculator.exe
+explorer.exe
+chrome.exe
+mspaint.exe
